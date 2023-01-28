@@ -7,7 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Getter
 @NoArgsConstructor
-public class MemberCreateDto {
+public class MemberCreateDto { // 회원가입시
     private String username;
     private String password;
     private String email;

@@ -39,7 +39,7 @@ public class MemberController {
         try{
             MemberCreateDto memberCreateDto=new MemberCreateDto(memberForm.getUsername(),memberForm.getPassword1(),memberForm.getEmail());
             memberService.create(memberCreateDto);
-        } catch(DataIntegrityViolationException e){
+        } catch(DataIntegrityViolationException e){ // 이미 등록된 아이디나 이메일을 다시 입력
             e.printStackTrace(); // 취약한 함수라고 함 -> 리팩토링 필수
             bindingResult.reject("joinFailed","이미 등록된 사용자입니다.");
             return "join_form";
@@ -49,6 +49,13 @@ public class MemberController {
             return "join_form";
         }
         return "redirect:/";
+    }
+
+
+    @GetMapping("/login")
+    public String login(Model model){
+        model.addAttribute("");
+        return "login_form";
     }
 
 }
